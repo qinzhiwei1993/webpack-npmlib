@@ -1,13 +1,17 @@
 {
-  "name": "my-vue-library",
-  "version": "0.1.0",
-  "private": true,
+  "name": "my-vue-library-ui",
+  "version": "0.1.2",
+  "main": "./lib/my-libui.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "lib": "webpack"
   },
+  "files": [
+    "lib",
+    "packages"
+  ],
   "dependencies": {
     "core-js": "^3.6.5",
     "element": "^0.1.4",
