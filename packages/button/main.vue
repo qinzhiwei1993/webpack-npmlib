@@ -17,8 +17,13 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
-  name: 'MyButton'
+  name: 'MyButton',
+  mounted(){
+    let chunk = _.chunk(['a', 'b', 'c', 'd'], 2);
+    console.log('chunk', chunk)
+  }
 }
 </script>
 

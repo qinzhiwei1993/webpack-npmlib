@@ -14,7 +14,15 @@ module.exports = {
     libraryTarget: "commonjs2",
     libraryExport: "default",
   },
-  // externals: config.externals,
+  externals: {
+    // 不将依赖模块lodash打包在lib内，将主动权交给业务项目
+    lodash: {
+      root: '_',
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      umd: 'lodash',
+    }
+  },
   //   performance: {
   //     hints: false
   //   },
