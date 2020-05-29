@@ -2,6 +2,21 @@ const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin"); // 打包进度
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 提取css至单独文件
+const webpack = require('webpack')
+
+const pkg = require("./package.json");
+// 输出版本信息
+const banner = `
+${pkg.name}
+${pkg.description}\n
+@version v${pkg.version}
+@homepage ${pkg.homepage}
+@repository ${pkg.repository.url}\n
+(c) 2020 qinzhiwei
+Released under the MIT License.
+hash: [hash]
+`;
+
 module.exports = {
   mode: "production",
   entry: {
@@ -17,10 +32,10 @@ module.exports = {
   externals: {
     // 不将依赖模块lodash打包在lib内，将主动权交给业务项目
     lodash: {
-      root: '_',
-      commonjs: 'lodash',
-      commonjs2: 'lodash',
-      umd: 'lodash',
+      root: "_",
+      commonjs: "lodash",
+      commonjs2: "lodash",
+      umd: "lodash",
     }
   },
   //   performance: {
@@ -68,7 +83,7 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           "css-loader",
-          "less-loader"
+          "less-loader",
         ],
       },
       {
@@ -87,5 +102,6 @@ module.exports = {
     }),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
+    new webpack.BannerPlugin(banner) // 打印库版本信息
   ],
 };
